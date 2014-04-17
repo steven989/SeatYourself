@@ -11,3 +11,205 @@
  *= require_self
  *= require_tree .
  */
+
+
+/* ----------------------- across the whole document ---------------------- */
+
+    body {
+
+        font-family: quicksand, sans-serif;
+        box-sizing:border-box;
+        -moz-box-sizing:border-box; /* Firefox */
+        background-color: #FFE3DD;
+    }
+
+
+/* ------------------------- header and footer -------------------------- */
+
+.header {
+
+    color: #D1A69C;
+    position:fixed;
+    height:5rem;
+    width: 100%;
+    background-color: #FFE3DD;
+    z-index: 1;
+    border-bottom: 0.2rem solid #F5D0C8;
+
+}
+
+#alt {
+
+    position: relative;
+    z-index: -1;
+}
+
+.header .logo {
+
+    position: absolute;
+    margin-top: 1rem;
+    margin-left: 1rem;
+    font-family: lobster-two, cursive;
+    font-size: 3rem;
+    font-style:italic;
+
+}
+
+.header .nav {
+
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+}
+
+    .header .nav li {
+
+        display: inline-block;
+        margin-left: 2rem;
+        border: 1px solid rgba(0,0,0,0);
+        padding: 0.2rem;
+
+    }
+
+        .header .nav li:hover {
+
+            border: 1px solid #F5D0C8;
+
+         }
+
+.header .login {
+
+    position: absolute;
+    top: 0.5rem;
+    right: 2rem;
+
+}
+
+    .header .login li {
+
+        display: inline-block;
+        margin-left: 1rem;
+
+    }
+
+.footer {
+
+    height: 5rem;
+    background-color: #F2AFA0;
+
+
+}
+
+/* ------------------------- landings#index -------------------------- */
+
+.body {
+
+    position:relative;
+    min-height:35rem;
+    background-color: #FFE3DD;
+    padding-bottom: 10rem;
+
+}
+
+.body .cuisine_filter {
+
+    color:#D1A69C;
+    position:fixed;
+    top: 10rem;
+    height: 20rem;
+    width: 15%;
+    background-color: #FFE3DD;
+    border: 0.2rem double #F5D0C8;
+    border-left: 0;
+    padding-left: 1rem;
+    padding-top: 2rem;
+
+}
+
+    .body .cuisine_filter ul {
+
+        position: fixed;
+        font-size: 1.2rem;
+
+    }
+
+    .body .cuisine_filter li {
+
+        position: relative;
+        top: 1rem;
+        font-size: 1rem;
+        margin-top:0.3rem;
+        
+    }
+
+.body .show_restaurants {
+
+    position: relative;
+    top: 3rem;
+    padding-top:2rem;
+    left: 15rem;
+    min-height: 15rem;
+    width: 76.5%;
+    background-color: #FFE3DD;
+    overflow: hidden;
+    border: 0.2rem double #F5D0C8;
+
+}
+
+
+/* ------------------------- restaurant card -------------------------- */
+
+.restaurant_card {
+
+    position: relative;
+    float: left;
+    width: 16rem;
+    height: 16rem;
+    margin-left: 3rem;
+    margin-bottom: 2rem;
+    border:0.4rem solid white;
+    border-radius: 100rem;
+    -webkit-filter: grayscale(0.9);
+    text-align: center;
+
+}
+
+.restaurant_card:hover {
+
+    -webkit-filter: grayscale(0);
+
+}
+
+    .restaurant_card .card_head {
+
+        position: relative;
+        display: inline-block;
+        top: 6.1rem;
+        color:white;
+        background-color: black ;
+        font-size:1.0rem;
+        text-align: center;
+        border: 0.4rem solid white;
+        padding:0.5rem;
+
+    }
+
+    .restaurant_card:hover .card_head {
+
+        opacity: 0;
+
+    }
+
+    .restaurant_card .card_body {
+
+        opacity: 0;
+        position: absolute;
+        color:white;
+        text-align: left;
+        border: 1px solid white;
+        border-top: 0;
+
+    }
+
+
