@@ -1,0 +1,28 @@
+<h1><%= @restaurant.name %></h1>
+
+<% if flash[:notice] %>
+  <h3><%= flash[:notice] %></h3>
+<% end %>
+
+<p>Book a reservation at this restaurant:</p>
+<%= form_for [@restaurant, @reservation] do |f| %>
+  <%= f.select(:start_time, @times_array) %>
+  <%= f.number_field :seats, placeholder: "number of seats", min: 0, max: 50, style: "width: 150px;" %>
+  <%= f.submit %>
+
+<% end %>
+
+<p>Debug stuff:</p>
+
+<strong>Current reservations:</strong>
+<% total_seats_reserved = 0 %>
+<% @restaurant.reservations.each do |reservation| %>
+  <% total_seats_reserved += reservation.seats %>
+  <p>Reservation #<%= reservation.id %>, <%= reservation.restaurant.name %> for <%= reservation.seats %> seats at <%= reservation.start_time %>.</p>
+
+<% end %>
+<br><br><br>
+<p>Total Seats reserved: <%= total_seats_reserved %>
+<p>Seats remaining: <%= @restaurant.capacity - total_seats_reserved %>
+
+
