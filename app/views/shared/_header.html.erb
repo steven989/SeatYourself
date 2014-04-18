@@ -16,8 +16,13 @@
 
   <div class="login">
     <ul>
+      <% if authenticated? %>
+      <li>Welcome back <%= authenticated?.first_name %>!</li>
+      <li><%= link_to "Log Out", session_path(authenticated?.id), method: :delete %></li>
+      <% else %>
       <li><%= link_to "Sign in", "/login" %></li>
       <li><%= link_to "Register a New Account", "/signup" %></li>
+      <% end %>
       <li>
         <%= form_tag "/search" do %>
           <%= text_field_tag :search, nil, placeholder: "Enter search term..." %>

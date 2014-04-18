@@ -6,5 +6,13 @@ class ApplicationController < ActionController::Base
   RESERVATION_LENGTH = 1.5.hours
   TIME_INCREMENT = 0.5.hours
 
+
+  def authenticated?
+   
+    @current_user ||= User.find_by(id: session[:user_id]) if session[:user_id]
+
+  end 
+
+  helper_method :authenticated?
   
 end

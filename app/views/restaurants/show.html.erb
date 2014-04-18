@@ -27,7 +27,6 @@
             <div style="text-align: right;">
               <%= f.label :seats, "Number of seats:" %><%= f.select(:seats, [ ["1 seat",1], ["2 seats",2], ["3 seats",3], ["4 seats",4], ["5 seats",5], ["6 seats",6], ]) %>
             </div>
-            
 
           
           </div>
@@ -55,6 +54,42 @@
     <div class="show_body_secondrow">
       <div class="show_reviews">
         <h1>REVIEWS</h1>
+
+<% if @reviews.length>0 ; @reviews.each do |review| %>
+
+    <p><%= review.title %></p>
+    <p><%= review.content %></p>
+    <p><%= review.rating %></p>
+    <p>Reviewed by <%= review.user.first_name.capitalize %> on <%= review.created_at %> </p>
+
+<% end; end %>
+
+<%= form_for [@restaurant, @restaurant.reviews.new] do |f| %>
+
+    <p><%= f.label 'title', 'Review Title' %></p>
+    <p><%= f.text_field 'title' %></p>
+
+    <p><%= f.label 'content', "Review" %></p>
+    <p><%= f.text_area 'content' %></p>
+
+    <p><%= f.label 'rating_1', '1' %>
+        <%= f.radio_button 'rating', 1 %>
+        <%= f.label 'rating_2', '2' %>
+        <%= f.radio_button 'rating', 2 %>
+        <%= f.label 'rating_3', '3' %>
+        <%= f.radio_button 'rating', 3 %>
+        <%= f.label 'rating_4', '4' %>
+        <%= f.radio_button 'rating', 4 %>
+        <%= f.label 'rating_5', '5' %>
+        <%= f.radio_button 'rating', 5 %></p>
+
+    <%= f.hidden_field 'user_id', value:session[:user_id] %>
+    <p><%= f.submit 'Submit your review now' %></p>
+
+
+<% end %>
+
+
       </div>
     </div>
 
@@ -154,3 +189,5 @@ document.getElementById('reservationCanvas').patternizer(
 );
 
 </script>
+
+

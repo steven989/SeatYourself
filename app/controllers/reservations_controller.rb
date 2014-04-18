@@ -3,6 +3,8 @@ class ReservationsController < ApplicationController
   end
 
   def create
+
+
     @restaurant = Restaurant.find(params[:restaurant_id])
 
 
@@ -14,10 +16,12 @@ class ReservationsController < ApplicationController
 
     @reservation = @restaurant.reservations.new(reservation_params)
     
-    if check_availability && @reservation.save
-      redirect_to restaurant_path(@reservation.restaurant.id), notice: "Resevation saved!"
+    if check_opening && check_availability && @reservation.save
+      
+      redirect_to restaurant_path(@reservation.restaurant.id),  notice: "Resevation saved!"
     else
-      redirect_to restaurant_path(@reservation.restaurant.id), notice: "Oh no! No more seats left."
+      flash[:notice] = check_opening ? "Oh no! No more seats left." : "The restaurant is not open at this time."
+      redirect_to restaurant_path(@reservation.restaurant.id)
     end
 
 
@@ -33,16 +37,27 @@ class ReservationsController < ApplicationController
   end
 
   def format_date
+    
+    r_year,r_throwaway,r_month,r_throwaway,r_day = params[:start_date].scan(/(....)(.)(..)(.)(..)/).flatten
     r_hour, r_min = params[:reservation][:start_time].scan(/../)
-    DateTime.new(2014,4,17,r_hour.to_i, r_min.to_i)
+
+    DateTime.new(r_year.to_i,r_month.to_i,r_day.to_i,r_hour.to_i, r_min.to_i)
+
   end
+
+
+  def check_opening
+
+    @date_obj >= @restaurant.opening_hour.strftime("%I:%M%p") && @date_obj < @restaurant.closing_hour.strftime("%I:%M%p")
+
+  end 
 
   def check_availability 
     # Check how many seats are available at every slice of time during the reservation, based on our two constants.
-    reservation_slice = @date_obj - RESERVATION_LENGTH + TIME_INCREMENT
+    reservation_slice = @date_obj - @restaurant.reservation_length_minutes.minutes + TIME_INCREMENT
 
     until reservation_slice > @date_obj
-      reserved_count = @restaurant.reservations.where("start_time >= ?", reservation_slice).where("start_time < ?", reservation_slice + RESERVATION_LENGTH).sum(:seats)
+      reserved_count = @restaurant.reservations.where("start_time >= ?", reservation_slice).where("start_time < ?", reservation_slice + @restaurant.reservation_length_minutes.minutes).sum(:seats)
       return false if reserved_count + @requested_seats > @restaurant.capacity
       reservation_slice += TIME_INCREMENT
     end
