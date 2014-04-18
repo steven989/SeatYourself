@@ -49,8 +49,3 @@ function init() {
  
 }
 
-$(document).ready(function() {
-  var bgCanvas = document.getElementById('bgCanvas');
-
-  init();
-});

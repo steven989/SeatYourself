@@ -14,3 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+var ready = function() {
+  var bgCanvas = document.getElementById('bgCanvas');
+
+  init();
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

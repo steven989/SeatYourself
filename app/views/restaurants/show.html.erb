@@ -4,8 +4,23 @@
   
   <div class="show_restaurant_wrapper">
     <div class="show_header">
+      
       <div class="show_header_image">
         <%= image_tag "3_header.jpg" %>
+      </div>
+      <div class="show_header_title">
+        <h1><%= @restaurant.name %></h1>
+      </div>
+
+    </div>
+
+    <div class="reservation_container">
+      <canvas id="reservationCanvas"></canvas>
+      <h3>Make a Reservation:</h3>
+    </div>
+    
+    <div class="show_body">
+
     </div>
 
   </div>

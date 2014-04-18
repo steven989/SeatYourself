@@ -1,6 +1,10 @@
 class RestaurantsController < ApplicationController
   def index
-    @restaurants = Restaurant.all
+    if cuisine = params[:cuisine]
+      @restaurants = Restaurant.where("cuisine = ?", cuisine.gsub("_"," "))
+    else
+      @restaurants = Restaurant.all
+    end
   end
 
   def show
