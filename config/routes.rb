@@ -4,7 +4,10 @@ SeatYourself::Application.routes.draw do
 
   resources :restaurants do
     resources :reservations, only: [:new, :create, :destroy]
+    resources :reviews, only: [:new, :create, :destroy]
   end
+
+
 
   root "restaurants#index"
 

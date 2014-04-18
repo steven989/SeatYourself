@@ -15,11 +15,18 @@ class RestaurantsController < ApplicationController
 
 
   def show
+    
     @restaurant = Restaurant.find(params[:id])
     
     @reservation = Reservation.new
 
     @times_array = generate_times_array
+
+    @reviews = @restaurant.reviews
+
+    @review = @restaurant.reviews.create
+
+
   end
 
 
