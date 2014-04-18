@@ -22,8 +22,7 @@ ActiveRecord::Schema.define(version: 20140417191208) do
     t.datetime "updated_at"
     t.string   "cuisine"
     t.string   "address"
-
-ActiveRecord::Schema.define(version: 20140417184443) do
+  end
 
   create_table "reservations", force: true do |t|
     t.integer  "restaurant_id"
@@ -45,7 +44,6 @@ ActiveRecord::Schema.define(version: 20140417184443) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-
   end
 
 end
