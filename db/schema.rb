@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140418195043) do
+ActiveRecord::Schema.define(version: 20140418215227) do
 
   create_table "dummyrestaurants", force: true do |t|
     t.string   "name"
@@ -44,6 +44,9 @@ ActiveRecord::Schema.define(version: 20140418195043) do
     t.string   "cuisine"
     t.string   "address"
     t.float    "rating"
+    t.time     "opening_hour"
+    t.time     "closing_hour"
+    t.integer  "reservation_length_minutes"
   end
 
   create_table "reviews", force: true do |t|
