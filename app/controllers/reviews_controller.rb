@@ -2,13 +2,12 @@ class ReviewsController < ApplicationController
 
     def create
 
-        params[:review][:user_id] = flash[:user_id]
-
         @review = Restaurant.find_by(id:params[:restaurant_id]).reviews.new(review_params)
 
         @review.save
 
         redirect_to restaurant_path(Restaurant.find_by(id:params[:restaurant_id]))
+
 
     end 
 

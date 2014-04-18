@@ -13,6 +13,7 @@
 <%= form_for [@restaurant, @reservation] do |f| %>
   <%= f.select(:start_time, @times_array) %>
   <%= f.number_field :seats, placeholder: "number of seats", min: 0, max: 50, style: "width: 150px;" %>
+  <%= f.hidden_field 'user_id', value:session[:user_id] %>
   <%= f.submit %>
 
 <% end %>
@@ -59,6 +60,7 @@
         <%= f.label 'rating_5', '5' %>
         <%= f.radio_button 'rating', 5 %></p>
 
+    <%= f.hidden_field 'user_id', value:session[:user_id] %>
     <p><%= f.submit 'Submit your review now' %></p>
 
 

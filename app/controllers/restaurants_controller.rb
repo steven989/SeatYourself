@@ -24,13 +24,6 @@ class RestaurantsController < ApplicationController
 
     @reviews = @restaurant.reviews
 
-    puts '---------------------------------------------------'
-    puts @reviews.inspect
-    puts '---------------------------------------------------'
-
-    flash[:user_id] = session[:user_id]
-
-
   end
 
 
