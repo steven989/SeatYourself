@@ -12,6 +12,7 @@ class RestaurantsController < ApplicationController
     @reservation = Reservation.new
 
     @times_array = generate_times_array
+    @dates_array = generate_dates_array
 
   end
 
@@ -20,11 +21,32 @@ class RestaurantsController < ApplicationController
 
   def generate_times_array
     times = []
-    10.times do |counter|
+    20.times do |counter|
       new_time = round_time + (counter * TIME_INCREMENT)
+      # Break at 10PM
+      break if new_time.hour > 22
+
       times << [new_time.strftime("%l:%M %P"), new_time.strftime("%H%M"), ]
+
     end
     times
+  end
+
+  def generate_dates_array
+    dates = []
+    date = Date.today
+
+    # Add today and tomorrow manually; they're special cases
+    dates << ["Today", date.strftime("%Y%m%d")]
+    date += 1
+    dates << ["Tomorrow", date.strftime("%Y%m%d")]
+    date += 1
+
+    20.times do 
+      dates << [date.strftime("%A, %B %-d"), date.strftime("%Y%m%d")]
+      date += 1
+    end
+    dates
   end
 
   def round_time

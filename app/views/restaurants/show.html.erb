@@ -1,6 +1,7 @@
 <%= render 'shared/header' %>
 
 <div class="body">
+  <input type="hidden" id="address" value="<%= @restaurant.address %>">
   
   <div class="show_restaurant_wrapper">
     <div class="show_header">
@@ -12,16 +13,51 @@
         <h1><%= @restaurant.name %></h1>
       </div>
 
+      <div class="reservation_container">
+        <canvas id="reservationCanvas"></canvas>
+        <h3>Make a Reservation:</h3>
+        
+        <%= form_for [@restaurant, @reservation] do |f| %>
+          <div class="reservation_form_container">
+          
+            <div>
+              <%= select_tag "start_date",  options_for_select(@dates_array, "MasterCard") %>
+              <%= f.select(:start_time, @times_array) %>
+            </div>
+            <div style="text-align: right;">
+              <%= f.label :seats, "Number of seats:" %><%= f.select(:seats, [ ["1 seat",1], ["2 seats",2], ["3 seats",3], ["4 seats",4], ["5 seats",5], ["6 seats",6], ]) %>
+            </div>
+            
+
+          
+          </div>
+          <div class="reservation_form_submit">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+
+
     </div>
 
-    <div class="reservation_container">
-      <canvas id="reservationCanvas"></canvas>
-      <h3>Make a Reservation:</h3>
+   
+    <div class="show_body_firstrow">
+      <div class="show_body_left">
+        <h2>Restaurant Details</h2>
+        <div class="show_stats"><strong>Cuisine:</strong> <%= @restaurant.cuisine %></div>
+        <div class="show_stats"><strong>Location:</strong> <%= @restaurant.location %></div>
+        <div class="show_stats"><strong>Price:</strong> $$$</div>
+        <p class="show_restaurant_description"><%= @restaurant.description %></p>
+      </div>
+      <div id="map-canvas"></div>
     </div>
-    
-    <div class="show_body">
+  
+    <div class="show_body_secondrow">
+      <div class="show_reviews">
+        <h1>REVIEWS</h1>
+      </div>
+    </div>
 
-    </div>
 
   </div>
 
@@ -29,17 +65,92 @@
 
 
 
-<h1><%= @restaurant.name %></h1>
 
-<% if flash[:notice] %>
-  <h3><%= flash[:notice] %></h3>
-<% end %>
 
-<p>Book a reservation at this restaurant:</p>
-<%= form_for [@restaurant, @reservation] do |f| %>
-  <%= f.select(:start_time, @times_array) %>
-  <%= f.number_field :seats, placeholder: "number of seats", min: 0, max: 50, style: "width: 150px;" %>
-  <%= f.submit %>
 
-<% end %>
+<script>
+ geocoder = new google.maps.Geocoder();
 
+  function codeAddress(map) {
+    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
+    var address = document.getElementById("address").value;
+
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map, 
+            position: results[0].geometry.location
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
+  }
+function initialize() {
+
+  var address = document.getElementById("address").value;
+
+
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
+
+      var myLatlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
+
+      var mapOptions = {
+        center: myLatlng,
+        zoom: 16
+      };
+      
+      var map = new google.maps.Map(document.getElementById("map-canvas"),
+          mapOptions);
+
+
+      var marker = new google.maps.Marker({
+          position: myLatlng,
+          map: map,
+          draggable:true,
+          title: "Canoe Restaurant"
+      });
+      marker.setTitle("Canoe");
+      markers.push(newMarker);
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+
+}
+
+
+initialize();
+
+
+document.getElementById('reservationCanvas').patternizer(
+  {
+    stripes : [ 
+        {
+            color: '#63d6ff',
+            rotation: 45,
+            opacity: 37,
+            mode: 'normal',
+            width: 41,
+            gap: 40,
+            offset: 0
+        },
+        {
+            color: '#b9e7f6',
+            rotation: 45,
+            opacity: 50,
+            mode: 'normal',
+            width: 25,
+            gap: 25,
+            offset: 0
+        }
+    ],
+    bg : '#427b95'
+  }
+);
+
+</script>

@@ -14,12 +14,14 @@
 
 
 /* ----------------------- across the whole document ---------------------- */
+    *, *:before, *:after {
+        box-sizing:border-box;
+        -moz-box-sizing:border-box; /* Firefox */
 
+    }
     body {
 
         font-family: quicksand, sans-serif;
-        box-sizing:border-box;
-        -moz-box-sizing:border-box; /* Firefox */
         background-color: #FFE3DD;
     }
 
@@ -131,7 +133,7 @@
         border: 1px solid #AAA;
         border-radius: 3px 0px 0px 3px;
         width: 150px;
-        height: 20px;
+        height: 22px;
         padding: 0px 4px;
         outline: none;
     }
@@ -276,7 +278,7 @@
     }
 
     .restaurant_card:hover a {
-        background: #000;
+        background: rgba(187,31,0,0.8);
         transition: 0.25s;
 
     }
@@ -285,7 +287,8 @@
             color: #FFF;
             text-decoration: none;
             margin-top: 30px;
-            padding: 10px;
+            letter-spacing: -1px;
+            padding: 10px 13px;
             height:8rem;
             background: rgba(0,0,0,0.5);
             text-shadow: 1px 1px 1px #000;
@@ -334,22 +337,17 @@
             2px 2px 0px #000,
             2px 2px 6px #000
         ;
+        )
     }
-
-.show_body {
-    min-height: 300px;
-    background: #FFF;
-}
 
 
 .reservation_container {
     position: absolute;
     right: 10%;
-    top: 30%;
-    width: 30%;
-    min-height: 300px;
+    bottom: 5%;
+    width: 25%;
     border-radius: 15px;
-    background: url('/assets/pink_noise.png');
+    background: #333;
     box-shadow:
       1px 1px 0px rgba(0,0,0,0.5),
       2px 2px 0px rgba(0,0,0,0.5),
@@ -357,24 +355,141 @@
     ;
 }
     .reservation_container h3 {
-        padding: 7px 0px;
-        margin: 8px 0px;
+        position: relative;
+        z-index: 5;
+        padding: 11px 0px;
+        margin: 0px;
         background: #333;
         color: #FFF;
+        border-radius: 15px 15px 0px 0px;
         text-align: center;
+    }
+    .reservation_form_container {
+        position: relative;
+        z-index: 5;
+        width: 90%;
+        margin: 10px auto;
+        padding: 10px;
+        background: #FFF;
+        border-radius: 10px;
+        box-shadow: 1px 1px 6px rgba(0,0,0,0.2);
+    }
+    .reservation_form_container label {
+        font-size: 12px;
+        font-weight: bold;
+        margin-right: 15px;
     }
 #reservationCanvas {
     position: absolute;
+    border-radius: 15px;
+    z-index: 1;
     width: 100%;
     height: 100%;
 }
 
+#start_date {
+    width: 65%;
+    padding: 4px;
+    float: left;
+}
+#reservation_start_time {
+    width: 30%;
+    padding: 4px;
+    float: right;
+}
+#reservation_seats {
+    width: 30%;
+    padding: 4px;
+}
 
+.reservation_form_submit {
+    position: relative;
+    z-index: 5;
+    background: rgba(255,255,255, 0.5);
+    width: 90%;
+    margin: 10px auto 16px auto;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 6px rgba(0,0,0,0.2);
 
+}
+.reservation_form_submit input {
+    width: 100%;
+    height: 35px;
+    background: #47a116;
+    color: #FFF;
+    border-radius: 5px;
+    border: 0px;
+    box-shadow: 
+        0px 1px 2px -1px #000,
+        inset 0px -4px 15px -5px rgba(0,0,0,0.5)
+    ;
+    -webkit-appearance:none;
+    outline: none;
+    transition: 0.3s;
+}
+.reservation_form_submit input:hover {
+    background: #66c531;
+    text-shadow: 1px 1px 1px #47a116;
+    transition: 0.3s;
+}
 
+.show_body_firstrow {
+    position: relative;
+    height: 300px;
+    margin: 3px 0px;
+    background: #FFF;
+}
+.show_body_left {
+    width: 55%;
+}
+    .show_body_firstrow h2 {
+        font-size: 40px;
+        letter-spacing: -3px;
+        color: #FFF;
+        text-align: center;
+        padding: 10px;
+        background: #333;
+    }
+    .show_stats {
+        width: 33.3%;
+        float: left;
+        text-align: center;
+        padding: 10px;
+        border-bottom: 1px dotted #AAA;
+    }
+        .show_stats strong {
+            color: #2692be;
+        }
+    .show_restaurant_description {
+        clear:both;
+        font-size: 0.8rem;
+        margin-top: 10px;
+        padding: 15px 25px 15px 15px;
+        text-align: justify;
+    }
+#map-canvas {
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    top: 0;
+    width: 45%;
+    height: 300px;
+}
 
-
-
+.show_body_secondrow {
+    margin-top: 5px;
+}
+.show_reviews {
+    position: relative;
+    clear: both;
+    min-height: 300px;
+    background: #EEE;
+}
+    .show_reviews h1 {
+        font-size: 72px;
+        text-align: center;
+    }
 
 
 
