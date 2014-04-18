@@ -40,7 +40,7 @@
 
 <% end; end %>
 
-<%= form_for [@restaurant, @review] do |f| %>
+<%= form_for [@restaurant, @restaurant.reviews.new] do |f| %>
 
     <p><%= f.label 'title', 'Review Title' %></p>
     <p><%= f.text_field 'title' %></p>
@@ -56,8 +56,8 @@
         <%= f.radio_button 'rating', 3 %>
         <%= f.label 'rating_4', '4' %>
         <%= f.radio_button 'rating', 4 %>
-        <%= f.label 'rating_4', '4' %>
-        <%= f.radio_button 'rating', 4 %></p>
+        <%= f.label 'rating_5', '5' %>
+        <%= f.radio_button 'rating', 5 %></p>
 
     <p><%= f.submit 'Submit your review now' %></p>
 
