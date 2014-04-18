@@ -3,6 +3,8 @@ class ReservationsController < ApplicationController
   end
 
   def create
+
+
     @restaurant = Restaurant.find(params[:restaurant_id])
 
 
@@ -33,8 +35,12 @@ class ReservationsController < ApplicationController
   end
 
   def format_date
+    
+    r_year,r_throwaway,r_month,r_throwaway,r_day = params[:reservation][:date].scan(/(....)(.)(..)(.)(..)/).flatten
     r_hour, r_min = params[:reservation][:start_time].scan(/../)
-    DateTime.new(2014,4,17,r_hour.to_i, r_min.to_i)
+
+    DateTime.new(r_year.to_i,r_month.to_i,r_day.to_i,r_hour.to_i, r_min.to_i)
+
   end
 
   def check_availability 

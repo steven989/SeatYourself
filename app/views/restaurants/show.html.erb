@@ -11,6 +11,7 @@
 
 <p>Book a reservation at this restaurant:</p>
 <%= form_for [@restaurant, @reservation] do |f| %>
+  <input type="date" name="reservation[date]" value= <%= Date.today %> >
   <%= f.select(:start_time, @times_array) %>
   <%= f.number_field :seats, placeholder: "number of seats", min: 0, max: 50, style: "width: 150px;" %>
   <%= f.hidden_field 'user_id', value:session[:user_id] %>

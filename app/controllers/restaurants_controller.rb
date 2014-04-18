@@ -60,8 +60,9 @@ class RestaurantsController < ApplicationController
   end 
 
   def generate_times_array
+
     times = []
-    10.times do |counter|
+    1.0.hour/TIME_INCREMENT*48.times do |counter|
       new_time = round_time + (counter * TIME_INCREMENT)
       times << [new_time.strftime("%l:%M %P"), new_time.strftime("%H%M"), ]
     end
