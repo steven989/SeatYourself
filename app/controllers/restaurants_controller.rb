@@ -2,6 +2,9 @@ class RestaurantsController < ApplicationController
   def index
     
     @restaurants = Restaurant.all
+
+    @registration_success = flash[:registration_success]
+
   end
 
 
