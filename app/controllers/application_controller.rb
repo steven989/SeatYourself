@@ -6,5 +6,8 @@ class ApplicationController < ActionController::Base
   RESERVATION_LENGTH = 1.5.hours
   TIME_INCREMENT = 0.5.hours
 
+
+  def user_
+
   
 end

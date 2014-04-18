@@ -5,11 +5,14 @@ class RestaurantsController < ApplicationController
 
     @registration_success = flash[:registration_success]
 
+    @login_message = flash[:login_message]
+
   end
 
 
   def show
     @restaurant = Restaurant.find(params[:id])
+    
     @reservation = Reservation.new
 
     @times_array = generate_times_array

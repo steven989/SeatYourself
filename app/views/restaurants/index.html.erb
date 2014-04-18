@@ -1,9 +1,14 @@
 <h1>Viewing All Restaurants</h1>
 
 <%= link_to "Sign up", new_user_path %>
+<%= link_to "Log in", new_session_path %>
 
 <% if @registration_success %>
   <h3><%= @registration_success %></h3>
+<% end %>
+
+<% if @login_message %>
+  <h3><%= @login_message %></h3>
 <% end %>
 
 
