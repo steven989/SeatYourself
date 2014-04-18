@@ -22,6 +22,30 @@ ActiveRecord::Schema.define(version: 20140417191208) do
     t.datetime "updated_at"
     t.string   "cuisine"
     t.string   "address"
+
+ActiveRecord::Schema.define(version: 20140417184443) do
+
+  create_table "reservations", force: true do |t|
+    t.integer  "restaurant_id"
+    t.integer  "user_id"
+    t.datetime "start_time"
+    t.integer  "seats"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "restaurants", force: true do |t|
+    t.string   "name"
+    t.integer  "capacity"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+
   end
 
 end

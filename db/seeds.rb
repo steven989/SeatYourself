@@ -6,7 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
 Dummyrestaurant.create!(
     name: "Canoe Restaurant and Bar",
     description: "Critically acclaimed to be among Canada’s best restaurants, Canoe's unique location high atop the TD Bank Tower affords a breathtaking view of the city and Lake Ontario. The design, originally conceptualized by noted designers Yabu Pushelberg and most recently refreshed by Anacleto Design, is clean and simple, yet absolutely stylish - a brilliant reflection of Canada's rich raw environment. That same brilliance is captured through the flavours and textures of Chef John Horne's inspired regional Canadian cuisine. The menu showcases the freshest and finest Canadian fish, game and produce, as well as an outstanding selection of Canadian vintages. ""All that is Canadian defines Canoe."" Florence Fabricant, The New York Times",
@@ -54,4 +53,11 @@ Dummyrestaurant.create!(
 )
 
 
-
+Restaurant.create!({
+  name: "The Keg",
+  capacity: 150
+})
+Restaurant.create!({
+  name: "Red Lobster",
+  capacity: 50
+  })
