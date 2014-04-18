@@ -1,7 +1,15 @@
 <h1>Viewing All Restaurants</h1>
 
-<%= link_to "Sign up", new_user_path %>
-<%= link_to "Log in", new_session_path %>
+<% if authenticated? %>
+
+    <p><%= link_to "Log out", session_path("current"), method:"delete" %></p>
+
+<% else %>
+
+    <%= link_to "Sign up", new_user_path %>
+    <%= link_to "Log in", new_session_path %>
+
+<% end %>
 
 <% if @registration_success %>
   <h3><%= @registration_success %></h3>

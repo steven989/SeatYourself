@@ -1,6 +1,10 @@
 class RestaurantsController < ApplicationController
+
+
   def index
     
+    @user_name = User.find_by(id:session[:user_id]).first_name.capitalize if authenticated?
+
     @restaurants = Restaurant.all
 
     @registration_success = flash[:registration_success]

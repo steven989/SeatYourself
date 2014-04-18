@@ -20,9 +20,11 @@ class SessionsController < ApplicationController
 
     def destroy
 
+
         session[:user_id] = nil
 
-        redirect_to restaurants_path, flash: {login_message: "Login Successful. Welcome back #{@user.first_name.capitalize}!"}        
+
+        redirect_to restaurants_path, flash: {login_message: "Logout Successful!"}        
 
     end 
 

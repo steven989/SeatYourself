@@ -21,10 +21,6 @@ module SeatYourself
     # config.i18n.default_locale = :de
 
 
-    def 
-
-
-
 
   end
 end

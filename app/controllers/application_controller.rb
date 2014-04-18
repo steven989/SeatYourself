@@ -7,7 +7,12 @@ class ApplicationController < ActionController::Base
   TIME_INCREMENT = 0.5.hours
 
 
-  def user_
+  def authenticated?
+   
+    User.find_by(id:session[:user_id])
 
+  end 
+
+  helper_method :authenticated?
   
 end
