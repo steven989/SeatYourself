@@ -1,7 +1,44 @@
-<h1>Viewing All Restaurants</h1>
+<%= render 'shared/header' %>
 
-<% @restaurants.each do |r| %>
-  <h4><%= link_to r.name, restaurant_path(r) %></h4>
-  <p>This restaurant seats <%= r.capacity %></p>
+<div class="body">
 
-<% end %>
+    <div class="cuisine_filter">
+      <h3>Filter by cuisine</h3>
+      <ul>
+        <li><%= link_to "European", "/restaurants/?cuisine=european" %></li>
+        <li><%= link_to "French", "/restaurants/?cuisine=french" %></li>
+        <li><%= link_to "Italian", "/restaurants/?cuisine=italian" %></li>
+        <li><%= link_to "Sushi", "/restaurants/?cuisine=sushi" %></li>
+        <li><%= link_to "Chinese", "/restaurants/?cuisine=chinese" %></li>
+        <li><%= link_to "Thai", "/restaurants/?cuisine=thai" %></li>
+        
+        <li><%= link_to "Asian Fusion", "/restaurants/?cuisine=asianfusion" %></li>
+        <li><%= link_to "American", "/restaurants/?cuisine=american" %></li>
+        <li><%= link_to "Bar", "/restaurants/?cuisine=bar" %></li>
+        <li><%= link_to "Moroccan", "/restaurants/?cuisine=moroccan" %></li>
+        <li><%= link_to "Middle Eastern", "/restaurants/?cuisine=middleeastern" %></li>
+        <li><%= link_to "Halal", "/restaurants/?cuisine=halal" %></li>
+      </ul>
+
+    </div>
+
+    <div class="show_restaurants">
+
+        <% @restaurants.cycle(4) do |restaurant| %>
+
+            <div class="restaurant_card" style="background: url('assets/<%= restaurant.display_image_url %>'); background-size: cover;">
+            <div class="card_head"><%= link_to restaurant.name, restaurant_path(restaurant.id) %></div>
+
+            </div>
+        <% end %>
+
+    </div>
+
+</div>
+
+
+
+<div class="footer">
+
+</div>
+

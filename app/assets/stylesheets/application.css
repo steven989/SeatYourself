@@ -23,25 +23,39 @@
         background-color: #FFE3DD;
     }
 
+    #bgCanvas {
+        position: fixed;
+    }
+     
+
 
 /* ------------------------- header and footer -------------------------- */
 
 .header {
 
-    color: #D1A69C;
+    color: #DDD;
     position:fixed;
     height:5rem;
     width: 100%;
-    background-color: #FFE3DD;
     z-index: 1;
-    border-bottom: 0.2rem solid #F5D0C8;
+    border-bottom: 2px solid #F5D0C8;
+    box-shadow: 0px 5px 10px -5px rgba(0,0,0,0.5);
+    background: #111111; /* Old browsers */
+    background: -moz-linear-gradient(top,  #111111 0%, #444444 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#111111), color-stop(100%,#444444)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #111111 0%,#444444 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #111111 0%,#444444 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #111111 0%,#444444 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  #111111 0%,#444444 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#111111', endColorstr='#444444',GradientType=0 ); /* IE6-9 */
 
 }
 
-#alt {
-
+#header_alt {
     position: relative;
-    z-index: -1;
+    z-index: 0;
+    height: 5rem;
+
 }
 
 .header .logo {
@@ -50,47 +64,88 @@
     margin-top: 1rem;
     margin-left: 1rem;
     font-family: lobster-two, cursive;
-    font-size: 3rem;
+    font-size: 4rem;
     font-style:italic;
-
+    text-shadow: 1px 1px 0px #000, 1px 1px 5px #000;
+    color: #FFF;
 }
 
 .header .nav {
 
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    bottom: 0rem;
+    right: 2.7rem;
+    font-size: 1.15rem;
 
 }
+
 
     .header .nav li {
 
         display: inline-block;
-        margin-left: 2rem;
-        border: 1px solid rgba(0,0,0,0);
-        padding: 0.2rem;
+        margin-left: 1rem;
 
     }
-
-        .header .nav li:hover {
-
-            border: 1px solid #F5D0C8;
-
-         }
+    .header .nav a {
+        display: block;
+        padding: 9px 15px;
+        color: #DDD;
+        text-decoration: none;
+        transition: 0.2s;
+        border-radius: 6px 6px 0px 0px;
+        text-shadow: 1px 1px 0px #000;
+    }
+        .header .nav a:hover {
+            background: rgba(255,255,255,0.25);
+            transition: 0.2s;
+            color: #FFF;
+            box-shadow: 0px -1px 1px rgba(0,0,0,0.5);
+        }
 
 .header .login {
 
     position: absolute;
     top: 0.5rem;
-    right: 2rem;
+    right: 3.6rem;
+    font-size: 0.75rem;
 
 }
 
     .header .login li {
 
         display: inline-block;
-        margin-left: 1rem;
+        margin-left: 1.6rem;
 
+    }
+
+    .login a {
+        color: #BBB;
+        text-decoration: none;
+    }
+    .login a:hover {
+        color: #FFF;
+        text-decoration: underline;
+    }
+    .login input[type=text] {
+        font-size: 0.7rem;
+        border: 1px solid #AAA;
+        border-radius: 3px 0px 0px 3px;
+        width: 150px;
+        height: 20px;
+        padding: 0px 4px;
+        outline: none;
+    }
+    .login input[type=submit] {
+        font-size: 0.5rem;
+        border: 1px solid #AAA;
+        border-radius: 0px 3px 3px 0px;
+        height: 22px;
+        padding: 0px 4px;
+        background: #666;
+        color: #FFF;
+        outline: none;
+        margin-left: -6px;
+        vertical-align: top;
     }
 
 .footer {
@@ -107,29 +162,33 @@
 
     position:relative;
     min-height:35rem;
-    background-color: #FFE3DD;
     padding-bottom: 10rem;
 
 }
 
 .body .cuisine_filter {
 
-    color:#D1A69C;
+    color:#6f382c;
     position:fixed;
     top: 10rem;
-    height: 20rem;
-    width: 15%;
+    width: 12.5rem;
     background-color: #FFE3DD;
-    border: 0.2rem double #F5D0C8;
+    border: 1px solid #f3b8ac;
     border-left: 0;
-    padding-left: 1rem;
-    padding-top: 2rem;
-
+    border-radius: 0px 10px 10px 0px;
+    padding-bottom: 1rem;
 }
+    .cuisine_filter h3 {
+        margin: 0rem;
+        border-radius: 0px 10px 0px 0px;
+        padding: 10px 0px;
+        color: #EEE;
+        background: #333;
+        text-align: center;
+    }
 
     .body .cuisine_filter ul {
-
-        position: fixed;
+        padding-top: 0px;
         font-size: 1.2rem;
 
     }
@@ -137,10 +196,27 @@
     .body .cuisine_filter li {
 
         position: relative;
-        top: 1rem;
+        top: 0.25rem;
         font-size: 1rem;
-        margin-top:0.3rem;
-        
+    }
+    .cuisine_filter li:hover {
+        box-shadow: inset 0px 1px 3px -1px rgba(0,0,0,0.5);
+        background: #fbd4cb;
+    }
+    .cuisine_filter a {
+        display: block;
+        transition: 0.25s;
+        color: #6f382c;
+        padding-left: 0.75rem;
+        line-height: 2em;
+        text-decoration: none;
+
+    }
+    .cuisine_filter a:hover {
+        border-left: 10px solid #eb3636;
+        transition: 0.25s;
+        font-weight: bold;
+
     }
 
 .body .show_restaurants {
@@ -170,36 +246,49 @@
     margin-bottom: 2rem;
     border:0.4rem solid white;
     border-radius: 100rem;
-    -webkit-filter: grayscale(0.9);
     text-align: center;
+    overflow-x: hidden;
 
 }
 
 .restaurant_card:hover {
 
-    -webkit-filter: grayscale(0);
 
 }
 
     .restaurant_card .card_head {
 
-        position: relative;
-        display: inline-block;
-        top: 6.1rem;
-        color:white;
-        background-color: black ;
-        font-size:1.0rem;
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        bottom: 0px;
+        color: white;
+        font-size:1.5rem;
         text-align: center;
-        border: 0.4rem solid white;
-        padding:0.5rem;
+        border: 0px;
+        padding: 0px;
+        opacity: 1;
+        transition: 0.25s;
+        border-radius: 0rem 0rem 100rem 100rem;
+        overflow: hidden;
 
     }
 
-    .restaurant_card:hover .card_head {
-
-        opacity: 0;
+    .restaurant_card:hover a {
+        background: #000;
+        transition: 0.25s;
 
     }
+        .card_head a {
+            display: block;
+            color: #FFF;
+            text-decoration: none;
+            margin-top: 30px;
+            padding: 10px;
+            height:8rem;
+            background: rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 1px #000;
+        }
 
     .restaurant_card .card_body {
 
@@ -211,5 +300,38 @@
         border-top: 0;
 
     }
+
+
+/* ------------------------- restaurant card -------------------------- */
+
+.show_header {
+    width: 100%;
+    margin: 0 auto;
+}
+.show_header_image img {
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

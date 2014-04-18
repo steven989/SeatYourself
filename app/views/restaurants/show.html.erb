@@ -1,3 +1,19 @@
+<%= render 'shared/header' %>
+
+<div class="body">
+  
+  <div class="show_restaurant_wrapper">
+    <div class="show_header">
+      <div class="show_header_image">
+        <%= image_tag "3_header.jpg" %>
+    </div>
+
+  </div>
+
+</div>
+
+
+
 <h1><%= @restaurant.name %></h1>
 
 <% if flash[:notice] %>
@@ -11,18 +27,4 @@
   <%= f.submit %>
 
 <% end %>
-
-<p>Debug stuff:</p>
-
-<strong>Current reservations:</strong>
-<% total_seats_reserved = 0 %>
-<% @restaurant.reservations.each do |reservation| %>
-  <% total_seats_reserved += reservation.seats %>
-  <p>Reservation #<%= reservation.id %>, <%= reservation.restaurant.name %> for <%= reservation.seats %> seats at <%= reservation.start_time %>.</p>
-
-<% end %>
-<br><br><br>
-<p>Total Seats reserved: <%= total_seats_reserved %>
-<p>Seats remaining: <%= @restaurant.capacity - total_seats_reserved %>
-
 

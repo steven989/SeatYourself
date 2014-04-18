@@ -1,29 +1,36 @@
 
 <div class="header">
 
-    <div class="logo">
-        <h1>SeatYourself</h1>
-    </div>
+  <div class="logo">
+    <h1>SeatYourself</h1>
+  </div>
 
-    <div class="nav">
+  <div class="nav">
 
-        <ul>
-            <li>View all restaurants</li>
-            <li>Make a reservation</li>
-            <li>Change a reservation</li>
-        </ul>
+    <ul>
+      <li><%= link_to "Find a Restaurant", restaurants_path %></li>
+      <li><%= link_to "Manage Reservations", restaurants_path %></li>
+    </ul>
 
-    </div>
+  </div>
 
-    <div class="login">
-        <ul>
-            <li>Sign up</li>
-            <li>Log in</li>
-        </ul>
-    </div>
+  <div class="login">
+    <ul>
+      <li><%= link_to "Sign in", "/login" %></li>
+      <li><%= link_to "Register a New Account", "/signup" %></li>
+      <li>
+        <%= form_tag "/search" do %>
+          <%= text_field_tag :search, nil, placeholder: "Enter search term..." %>
+          <%= submit_tag "Search" %>
+
+        <% end %>
+
+      </li>
+    </ul>
+  </div>
 
 </div>
 
-<div class ="header" id="alt">
+<div id="header_alt">
 
 </div>
