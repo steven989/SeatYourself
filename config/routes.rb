@@ -8,6 +8,8 @@ SeatYourself::Application.routes.draw do
 
   root "restaurants#index"
 
+  resources :users, only: [:new,:create,:destroy,:show]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

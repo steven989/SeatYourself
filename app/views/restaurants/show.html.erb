@@ -4,6 +4,11 @@
   <h3><%= flash[:notice] %></h3>
 <% end %>
 
+<% if flash[:rest_create] %>
+  <h3><%= flash[:rest_create] %></h3>
+<% end %>
+
+
 <p>Book a reservation at this restaurant:</p>
 <%= form_for [@restaurant, @reservation] do |f| %>
   <%= f.select(:start_time, @times_array) %>
