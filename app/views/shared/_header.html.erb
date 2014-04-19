@@ -20,8 +20,8 @@
       <li>Welcome back <%= authenticated?.first_name %>!</li>
       <li><%= link_to "Log Out", session_path(authenticated?.id), method: :delete %></li>
       <% else %>
-      <li><%= link_to "Sign in", "/login" %></li>
-      <li><%= link_to "Register a New Account", "/signup" %></li>
+      <li><%= link_to "Sign in", new_session_path %></li>
+      <li><%= link_to "Register a New Account", new_user_path %></li>
       <% end %>
       <li>
         <%= form_tag "/search" do %>
