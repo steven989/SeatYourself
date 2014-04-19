@@ -14,5 +14,43 @@ class ApplicationController < ActionController::Base
   end 
 
   helper_method :authenticated?
-  
+
+
+
+  def generate_times_array
+
+    times = []
+
+    current_slice = @restaurant.opening_hour
+
+    until current_slice > (@restaurant.closing_hour - RESERVATION_LENGTH) do
+      times << [current_slice.strftime("%l:%M %P"), current_slice.strftime("%H%M") ]
+      current_slice += TIME_INCREMENT
+    end
+    times
+  end
+
+
+  def generate_dates_array
+    dates = []
+    date = Date.today
+
+    # Add today and tomorrow manually; they're special cases
+    dates << ["Today", date.strftime("%Y-%m-%d")]
+    date += 1
+    dates << ["Tomorrow", date.strftime("%Y-%m-%d")]
+    date += 1
+
+    20.times do 
+      dates << [date.strftime("%A, %B %-d"), date.strftime("%Y-%m-%d")]
+      date += 1
+    end
+    dates
+  end
+
+  def round_time
+    Time.at((Time.now.to_f / 30.minutes).ceil * 30.minutes)
+  end
+
+
 end

@@ -7,7 +7,6 @@ class ReservationsController < ApplicationController
 
     @restaurant = Restaurant.find(params[:restaurant_id])
 
-
     @date_obj = format_date
     @requested_seats = params[:reservation][:seats].to_i
     
@@ -26,6 +25,45 @@ class ReservationsController < ApplicationController
 
 
   end
+
+  def edit
+    
+    @restaurant = Restaurant.find_by(id:params[:restaurant_id])
+    @reservation = Reservation.find_by(id:params[:id])
+
+    @times_array = generate_times_array
+    @dates_array = generate_dates_array
+
+
+
+  end 
+
+  def update
+
+
+    @restaurant = Restaurant.find(params[:restaurant_id])
+
+    @date_obj = format_date
+    @requested_seats = params[:reservation][:seats].to_i
+    
+    params[:reservation][:start_time] = @date_obj
+    params[:reservation][:restaurant_id] = params[:restaurant_id]
+
+    @reservation = Reservation.find_by(id:params[:id])
+    @reservation.attributes=(reservation_params)
+
+    if check_opening && check_availability && @reservation.save
+      
+      redirect_to user_path(@reservation.user),  notice: "Resevation saved!"
+    else
+      flash[:notice] = check_opening ? "Oh no! No more seats left." : "The restaurant is not open at this time."
+      redirect_to user_path(@reservation.user)
+    end
+
+
+
+  end 
+
 
   def delete
   end

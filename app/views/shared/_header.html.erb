@@ -9,7 +9,8 @@
 
     <ul>
       <li><%= link_to "Find a Restaurant", restaurants_path %></li>
-      <li><%= link_to "Manage Reservations", restaurants_path %></li>
+      <% @user = session[:user_id].nil? ? "login" : session[:user_id] %>
+      <li><%= link_to "Manage Reservations", user_path(@user) %></li>
     </ul>
 
   </div>

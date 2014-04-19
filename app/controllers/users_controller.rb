@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
     end 
 
+
     def create
 
         @user = User.new(user_params)
@@ -25,6 +26,8 @@ class UsersController < ApplicationController
     def show
 
         @user = User.find_by(id:session[:user_id])
+        @reservations = @user.reservations
+
 
     end 
 

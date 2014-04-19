@@ -1,2 +1,31 @@
 
-<h1></h1>
+<div class="dashboard_wrapper"> 
+
+
+<h1>Here are your information:</h1>
+
+<div class="personal_info">
+
+    <p>Eamil: <%= @user.name %></p>
+    <p>First name: <%= @user.first_name.capitalize %></p>
+    <p>Last name:<%= @user.last_name.capitalize %></p>
+    <p>Join date: <%= @user.created_at.strftime("%F") %></p>
+    <p>Account type: <%= @user.user_type.capitalize %></p>
+
+</div>
+
+
+<div class="reservation_listing">
+
+    <% @reservations.each do |reservation| %>
+
+        <p>Restaurant: <%= link_to reservation.restaurant.name, restaurant_path(reservation.restaurant) %></p>
+        <p>Reservation time: <%= reservation.start_time %></p>
+        <p>Party size: <%= reservation.seats %></p>
+        <p><%= link_to "Modify reservation", edit_restaurant_reservation_path(reservation.restaurant, reservation) %></p>
+
+    <% end %>
+
+</div>
+
+</div>
