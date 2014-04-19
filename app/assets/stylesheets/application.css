@@ -486,18 +486,69 @@
     height: 300px;
 }
 
-.show_body_secondrow {
-    margin-top: 0px;
-}
 .show_reviews {
     position: relative;
     clear: both;
-    min-height: 300px;
+    min-height: 350px;
     background: #EEE;
 }
     .show_reviews h1 {
-        font-size: 72px;
-        text-align: center;
+        font-size: 46px;
+        letter-spacing: -3px;
+    }
+
+    .reviews_display {
+        position: relative;
+        display: inline-block;
+        top: 10px;
+        width: 70%;
+        height: 300px;
+        background: #FFF;
+        margin: 0px 10px;
+        border-radius: 15px;
+        box-shadow: inset 1px 1px 4px rgba(0,0,0,0.5);
+        vertical-align: top;
+    }
+        .chair_rating img {
+            width: 24px;
+        }
+    .reviews_stats {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 25%;
+        height: 300px;
+        border-radius: 0px 15px 15px 0px;
+        vertical-align: top;
+        box-shadow: inset -1px 1px 4px rgba(0,0,0,0.5);
+        background: #333333; /* Old browsers */
+        background: -moz-linear-gradient(top,  #555555 0%, #222222 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#555555), color-stop(100%,#222222)); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  #555555 0%,#222222 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  #555555 0%,#222222 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  #555555 0%,#222222 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  #555555 0%,#222222 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#222222',GradientType=0 ); /* IE6-9 */
+
+    }
+        .reviews_stats h3 {
+            color: #FFF;
+            line-height: 2em;
+            text-align: center;
+            letter-spacing: -1px;
+            background: rgba(0,169,225, 0.75);
+            border-radius: 0px 15px 0px 0px;
+            box-shadow:
+                inset -1px 1px 5px  -2px rgba(0,0,0,0.5),
+                0px 2px 5px -2px rgba(0,0,0,0.4)
+            ;
+            text-shadow: 1px 1px 1px #006789;
+        }
+    .reviews_add {
+        position: relative;
+        display: inline-block;
+        height: 300px;
+        vertical-align: top;
     }
 
 
