@@ -7,7 +7,7 @@
     <div class="show_header">
       
       <div class="show_header_image">
-        <%= image_tag "3_header.jpg" %>
+        <%= image_tag @headerimage + "_header.jpg" %>
       </div>
       <div class="show_header_title">
         <h1><%= @restaurant.name %></h1>
@@ -114,23 +114,8 @@
 <script>
  geocoder = new google.maps.Geocoder();
 
-  function codeAddress(map) {
-    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
-    var address = document.getElementById("address").value;
 
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map, 
-            position: results[0].geometry.location
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
+    //In this case it gets the address from an element on the page, but obviously you  could just pass it to the method instead
 function initialize() {
 
   var address = document.getElementById("address").value;
@@ -155,9 +140,9 @@ function initialize() {
           position: myLatlng,
           map: map,
           draggable:true,
-          title: "Canoe Restaurant"
+          title: ""
       });
-      marker.setTitle("Canoe");
+      marker.setTitle("<%= @restaurant.name %>");
       markers.push(newMarker);
     } else {
       alert("Geocode was not successful for the following reason: " + status);

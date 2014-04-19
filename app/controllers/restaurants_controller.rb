@@ -22,6 +22,8 @@ class RestaurantsController < ApplicationController
   def show
     
     @restaurant = Restaurant.find(params[:id])
+
+    @headerimage = @restaurant.name.gsub(/\s+/, "").gsub('\'', "").downcase
     
     @reservation = Reservation.new
 
@@ -68,14 +70,12 @@ class RestaurantsController < ApplicationController
   def generate_times_array
 
     times = []
-    
-    20.times do |counter|
-      new_time = round_time + (counter * TIME_INCREMENT)
-      # Break at 10PM
-      break if new_time.hour > 22
 
-      times << [new_time.strftime("%l:%M %P"), new_time.strftime("%H%M") ]
+    current_slice = @restaurant.opening_hour
 
+    until current_slice > (@restaurant.closing_hour - RESERVATION_LENGTH) do
+      times << [current_slice.strftime("%l:%M %P"), current_slice.strftime("%H%M") ]
+      current_slice += TIME_INCREMENT
     end
     times
   end
