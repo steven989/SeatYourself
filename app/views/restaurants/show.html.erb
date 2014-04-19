@@ -26,11 +26,20 @@
     <div class="show_body_firstrow">
       <div class="show_body_left">
         <h2>Restaurant Details</h2>
-        <div class="show_stats"><strong>Cuisine:</strong> <%= @restaurant.cuisine %></div>
-        <div class="show_stats"><strong>Location:</strong> <%= @restaurant.location %></div>
-        <div class="show_stats"><strong>Price:</strong> $$$</div>
-        <p class="show_restaurant_description"><strong>About <%= @restaurant.name %>:</strong>
-          <%= @restaurant.description %></p>
+        <div class="stats_container">
+          <ul>
+            <li><strong>Cuisine:</strong> <%= @restaurant.cuisine %></li>
+            <li><strong>Location:</strong> <%= @restaurant.location %></li>
+            <li><strong>Price:</strong> $$$</li>
+          </ul>
+        </div>
+        <p class="show_restaurant_description">
+          <strong>About <%= @restaurant.name %>:</strong> <%= @restaurant.description %>
+          <br><br><br>
+          <span style="font-size: 0.9em">
+            <strong style="color: #2692be">Restaurant Address:</strong> <%= @restaurant.address %>
+          </span>
+        </p>
       </div>
       <div id="map-canvas"></div>
     </div>

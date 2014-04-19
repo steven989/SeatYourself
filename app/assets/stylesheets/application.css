@@ -457,15 +457,17 @@
         padding: 10px;
         background: #333;
     }
-    .show_stats {
-        width: 33.3%;
-        float: left;
+    .stats_container {
         text-align: center;
-        padding: 10px;
         border-bottom: 1px dotted #AAA;
-        font-size: 0.8em;
     }
-        .show_stats strong {
+        .stats_container li {
+            padding: 10px;
+            margin: 0 10px;
+            font-size: 0.8em;
+            display: inline-block;
+        }
+        .stats_container strong {
             color: #2692be;
         }
     .show_restaurant_description {
