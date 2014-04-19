@@ -13,6 +13,45 @@ class ApplicationController < ActionController::Base
 
   end 
 
+
+  def generate_times_array
+
+    times = []
+    
+    20.times do |counter|
+      new_time = round_time + (counter * TIME_INCREMENT)
+      # Break at 10PM
+      break if new_time.hour > 22
+
+      times << [new_time.strftime("%l:%M %P"), new_time.strftime("%H%M") ]
+
+    end
+    times
+  end
+
   helper_method :authenticated?
+
+  def generate_dates_array
+    dates = []
+    date = Date.today
+
+    # Add today and tomorrow manually; they're special cases
+    dates << ["Today", date.strftime("%Y-%m-%d")]
+    date += 1
+    dates << ["Tomorrow", date.strftime("%Y-%m-%d")]
+    date += 1
+
+    20.times do 
+      dates << [date.strftime("%A, %B %-d"), date.strftime("%Y-%m-%d")]
+      date += 1
+    end
+    dates
+  end
+
+  def round_time
+    Time.at((Time.now.to_f / 30.minutes).ceil * 30.minutes)
+  end
+
+
   
 end

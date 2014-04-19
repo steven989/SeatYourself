@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
         redirect_to restaurants_path, flash: {login_message: "Login Successful. Welcome back #{@user.first_name.capitalize}!"}
+    
     else 
         render :new
     end 
@@ -22,7 +23,6 @@ class SessionsController < ApplicationController
 
 
         session[:user_id] = nil
-
 
         redirect_to restaurants_path, flash: {login_message: "Logout Successful!"}        
 

@@ -528,6 +528,14 @@
 
 
 
+/*--------------------------- User dashboard ---------------------------------*/
+
+.dashboard_wrapper {
+
+    position: absolute;
+    z-index: 1;
+
+}
 
 
 
