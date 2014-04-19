@@ -68,10 +68,11 @@ class RestaurantsController < ApplicationController
   def generate_times_array
 
     times = []
-    1.0.hour/TIME_INCREMENT*48.times do |counter|
+    
+    20.times do |counter|
       new_time = round_time + (counter * TIME_INCREMENT)
       # Break at 10PM
-      # break if new_time.hour > 22
+      break if new_time.hour > 22
 
       times << [new_time.strftime("%l:%M %P"), new_time.strftime("%H%M") ]
 

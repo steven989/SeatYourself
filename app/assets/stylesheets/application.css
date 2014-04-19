@@ -364,7 +364,7 @@
         border-radius: 15px 15px 0px 0px;
         text-align: center;
     }
-    .reservation_form_container {
+    .reservation_form_container, .not_allowed_reserve {
         position: relative;
         z-index: 5;
         width: 90%;
@@ -378,6 +378,10 @@
         font-size: 12px;
         font-weight: bold;
         margin-right: 15px;
+    }
+    .not_allowed_reserve h4 {
+        font-size: 20px;
+        color: #DB4535;
     }
 #reservationCanvas {
     position: absolute;
@@ -436,8 +440,10 @@
 
 .show_body_firstrow {
     position: relative;
-    height: 300px;
-    margin: 3px 0px;
+    height: 306px;
+    margin: 0px;
+    border-top: 3px solid #333;
+    border-bottom: 3px solid #333;
     background: #FFF;
 }
 .show_body_left {
@@ -479,7 +485,7 @@
 }
 
 .show_body_secondrow {
-    margin-top: 5px;
+    margin-top: 0px;
 }
 .show_reviews {
     position: relative;
@@ -493,7 +499,31 @@
     }
 
 
-
+/*------------------------ USER logins and registrations -------------------------------*/
+.registration_logo {
+    position: absolute;
+    z-index: 15px;
+    top: 30px;
+    width: 100%;
+    text-align: center;
+    font-family: lobster-two, cursive;
+    font-size: 72px;
+    color: #e85e43;
+    text-shadow: 
+      1px 1px 0px #c32312,
+      2px 2px 0px #8f1c10,
+      3px 3px 0px #680e06;
+}
+.registration_form {
+    position: relative; 
+    top: 120px;
+    width: 800px;
+    margin: 0 auto;
+    z-index: 10; 
+    background: #FFF;
+    padding: 15px;
+    border-radius: 12px;
+}
 
 
 
