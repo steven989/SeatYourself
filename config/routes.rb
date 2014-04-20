@@ -4,6 +4,8 @@ SeatYourself::Application.routes.draw do
 
   get 'restaurants/view/:cuisine' => 'restaurants#index'
 
+  get 'reservations' => 'reservations#show'
+
   resources :restaurants do
     resources :reservations, only: [:new, :create, :destroy, :edit, :update]
     resources :reviews, only: [:new, :create, :destroy]

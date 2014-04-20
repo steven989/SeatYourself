@@ -6,13 +6,13 @@ class SessionsController < ApplicationController
 
     def create
 
-        @user = User.find_by(name:params[:name])
+        @user = User.find_by(email:params[:email])
 
     if @user && @user.authenticate(params[:password])
         session[:user_id] = @user.id
         redirect_to restaurants_path, flash: {login_message: "Login Successful. Welcome back #{@user.first_name.capitalize}!"}
-    
     else 
+        flash[:alert] = "We couldn't log you in with those details. Please try again."
         render :new
     end 
 

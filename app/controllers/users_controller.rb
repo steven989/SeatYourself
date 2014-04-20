@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
     def show
 
-        @user = User.find_by(id:session[:user_id])
+        @user = User.first
         @reservations = @user.reservations
 
 
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
 
     def user_params
 
-        params.require(:user).permit(:name,:password,:password_confirmation,:first_name,:last_name,:user_type,:active_status)
+        params.require(:user).permit(:email,:password,:password_confirmation,:first_name,:last_name,:user_type,:active_status)
 
     end
 

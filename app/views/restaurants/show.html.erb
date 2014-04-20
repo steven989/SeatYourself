@@ -13,15 +13,17 @@
         <h1><%= @restaurant.name %></h1>
       </div>
 
+      <% if flash[:alert] %>
+        <div class="show_failed_alert"><%= flash[:alert] %></div>
+      <% end %>
+
       <div class="reservation_container">
         <canvas id="reservationCanvas"></canvas>
         <h3>Make a Reservation:</h3>
         <%= render 'shared/reservation_form' %>
       </div>
 
-
     </div>
-
    
     <div class="show_body_firstrow">
       <div class="show_body_left">

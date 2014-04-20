@@ -1,29 +1,35 @@
-<h1 class="registration_logo">Seat Yourself</h1>
 
-<div class="registration_form">
-    <%= form_for @user do |f| %>
+<div class="black_stripe"></div>
 
-        <p><%= f.label 'name', 'Email' %></p>
-        <p><%= f.text_field 'name' %></p>
+<h1 class="registration_logo"><%= link_to "Seat Yourself", restaurants_path %></h1>
 
-        <p><%= f.label 'password', 'Password' %></p>
-        <p><%= f.password_field 'password' %></p>
-
-        <p><%= f.label 'password_confirmation', 'Retype your password' %></p>
-        <p><%= f.password_field 'password_confirmation' %></p>
-
-        <p><%= f.label 'first_name', 'First Name' %></p>
-        <p><%= f.text_field 'first_name' %></p>
-
-        <p><%= f.label 'last_name', 'Last Name' %></p>
-        <p><%= f.text_field 'last_name' %></p>
-
-        <p><%= f.label 'user_type_diner', 'Diner' %>
-            <%= f.radio_button 'user_type','diner', checked:true %>
-            <%= f.label 'user_type_restaurant', 'Restaurant' %>
-            <%= f.radio_button 'user_type','restaurant' %></p>
-
-        <p><%= f.submit 'Click to sign up' %></p>
-
+<div class="registration_form_outer"><div class="registration_form_inner">
+  <h2>Register Account</h2>
+  <% if flash[:alert] %>
+    <div class="alert_login"><%= flash[:alert] %></div>
+  <% end %>
+    <% if flash[:notice] %>
+      <div class="notice_login"><%= flash[:notice] %></div>
     <% end %>
-</div>
+
+  <%= form_for @user do |f| %>
+
+    <p><%= f.text_field 'email', placeholder: "Email Address" %></p>
+
+    <%= f.password_field 'password', placeholder: "Password" %></p>
+
+    <%= f.password_field 'password_confirmation', placeholder: "Password (confirm)" %></p>
+
+    <%= f.text_field 'first_name', placeholder: "First Name" %></p>
+
+    <%= f.text_field 'last_name', placeholder: "Last Name" %></p>
+
+    <p style="display: none;"><%= f.label 'user_type_diner', 'Diner' %>
+      <%= f.radio_button 'user_type','diner', checked:true %>
+      <%= f.label 'user_type_restaurant', 'Restaurant' %>
+      <%= f.radio_button 'user_type','restaurant' %></p>
+
+    <p><%= f.submit 'Click to sign up' %></p>
+
+  <% end %>
+</div></div>

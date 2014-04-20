@@ -1,0 +1,29 @@
+<div class="black_stripe"></div>
+<h1 class="registration_logo"><%= link_to "Seat Yourself", restaurants_path %></h1>
+
+    <div class="registration_form_outer"><div class="registration_form_inner">
+
+        <div class="reservation_listing">
+            <h3 class="reservation_upcoming_header">Upcoming Reservations:</h3>
+            <% @upcoming.each do |reservation| %>
+
+                <p>Restaurant: <%= link_to reservation.restaurant.name, restaurant_path(reservation.restaurant) %></p>
+                <p>Reservation time: <%= reservation.start_time %></p>
+                <p>Party size: <%= reservation.seats %></p>
+                <p><%= link_to "Modify reservation", edit_restaurant_reservation_path(reservation.restaurant, reservation) %></p>
+
+            <% end %>
+
+            <h2>Past Reservations:</h2>
+            <% @past.each do |reservation| %>
+
+                <p>Restaurant: <%= link_to reservation.restaurant.name, restaurant_path(reservation.restaurant) %></p>
+                <p>Reservation time: <%= reservation.start_time %></p>
+                <p>Party size: <%= reservation.seats %></p>
+                <p><%= link_to "Modify reservation", edit_restaurant_reservation_path(reservation.restaurant, reservation) %></p>
+
+            <% end %>
+
+        </div>
+
+    </div></div>

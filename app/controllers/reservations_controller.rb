@@ -2,6 +2,15 @@ class ReservationsController < ApplicationController
   def new
   end
 
+  def show
+    if current_user
+      @upcoming = current_user.reservations.where("start_time > ?", DateTime.now)
+      @past = current_user.reservations.where("start_time < ?", DateTime.now)
+    else
+      redirect_to new_session_path, alert: "Please log in first."
+    end
+  end
+
   def create
 
 
@@ -12,14 +21,15 @@ class ReservationsController < ApplicationController
     
     params[:reservation][:start_time] = @date_obj
     params[:reservation][:restaurant_id] = params[:restaurant_id]
+    params[:reservation][:user_id] = current_user.id
 
     @reservation = @restaurant.reservations.new(reservation_params)
     
-    if check_opening && check_availability && @reservation.save
+    if check_availability && @reservation.save
       
-      redirect_to restaurant_path(@reservation.restaurant.id),  notice: "Resevation saved!"
+      redirect_to reservations_path,  notice: "Resevation saved!"
     else
-      flash[:notice] = check_opening ? "Oh no! No more seats left." : "The restaurant is not open at this time."
+      flash[:notice] = "Oh no! No more seats left."
       redirect_to restaurant_path(@reservation.restaurant.id)
     end
 
@@ -56,7 +66,7 @@ class ReservationsController < ApplicationController
       
       redirect_to user_path(@reservation.user),  notice: "Resevation saved!"
     else
-      flash[:notice] = check_opening ? "Oh no! No more seats left." : "The restaurant is not open at this time."
+      flash[:alert] = check_opening ? "Oh no! No more seats left." : "The restaurant is not open at this time."
       redirect_to user_path(@reservation.user)
     end
 

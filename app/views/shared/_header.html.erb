@@ -10,7 +10,7 @@
     <ul>
       <li><%= link_to "Find a Restaurant", restaurants_path %></li>
       <% @user = session[:user_id].nil? ? "login" : session[:user_id] %>
-      <li><%= link_to "Manage Reservations", user_path(@user) %></li>
+      <li><%= link_to "Manage Reservations", reservations_path %></li>
     </ul>
 
   </div>
@@ -18,8 +18,8 @@
   <div class="login">
     <ul>
       <% if authenticated? %>
-      <li>Welcome back <%= authenticated?.first_name %>!</li>
-      <li><%= link_to "Log Out", session_path(authenticated?.id), method: :delete %></li>
+      <li>Welcome back <%= current_user.first_name %>!</li>
+      <li><%= link_to "Log Out", session_path(current_user.id), method: :delete %></li>
       <% else %>
       <li><%= link_to "Sign in", new_session_path %></li>
       <li><%= link_to "Register a New Account", new_user_path %></li>
