@@ -5,6 +5,6 @@ class AddDetailsToRestaurants < ActiveRecord::Migration
     add_column :restaurants, :description, :text
     add_column :restaurants, :display_image_url, :text
     add_column :restaurants, :location, :string
-
-  end
+	add_column :restaurants, :rating, :float  
+end
 end
