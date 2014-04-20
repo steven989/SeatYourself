@@ -1,12 +1,14 @@
 class ReviewsController < ApplicationController
-
+	before_filter :load_restaurant
     def create
 
-        @review = Restaurant.find_by(id:params[:restaurant_id]).reviews.new(review_params)
+        @review = @restaurant.reviews.new(review_params)
 
-        @review.save
-
-        redirect_to restaurant_path(Restaurant.find_by(id:params[:restaurant_id]))
+        if @review.save
+			redirect_to restaurant_path(@restaurant), notice: "Review saved!"
+		else
+			redirect_to restaurant_path(@restaurant), alert: "Please fill in all fields before submitting a review"
+		end
 
 
     end 
@@ -16,7 +18,10 @@ class ReviewsController < ApplicationController
     def review_params
 
         params.require(:review).permit(:title,:content,:rating,:user_id)
-
     end 
+
+    def load_restaurant
+    	@restaurant = Restaurant.find(params[:restaurant_id])
+    end
 
 end

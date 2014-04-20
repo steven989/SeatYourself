@@ -24,17 +24,24 @@ class ReservationsController < ApplicationController
     params[:reservation][:user_id] = current_user.id
 
     @reservation = @restaurant.reservations.new(reservation_params)
-    
-    if check_availability && @reservation.save
-      
+
+    if in_the_past?
+      # We're trying to make a booking in the past
+      flash[:alert] = "You cannot book a reservation in the past!"
+      redirect_to restaurant_path(@reservation.restaurant.id)
+    elsif !check_availability
+      flash[:alert] = "Oh no! No more seats left."
+      redirect_to restaurant_path(@reservation.restaurant.id)
+    elsif @reservation.save
       redirect_to reservations_path,  notice: "Resevation saved!"
     else
-      flash[:notice] = "Oh no! No more seats left."
+      flash[:alert] = "An unknown error has occured. Please try again later."
       redirect_to restaurant_path(@reservation.restaurant.id)
     end
 
-
   end
+
+
 
   def edit
     
@@ -75,7 +82,13 @@ class ReservationsController < ApplicationController
   end 
 
 
-  def delete
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    if @reservation.delete
+      redirect_to reservations_path, notice: "Reservation Deleted!"
+    else
+      redirect_to reservations_path, alert: "Could not delete reservation!"
+    end
   end
 
   private
@@ -110,6 +123,10 @@ class ReservationsController < ApplicationController
       reservation_slice += TIME_INCREMENT
     end
     true
+  end
+
+  def in_the_past?
+    params[:reservation][:start_time] < Time.now
   end
 
   # Scenario: Booked solid at 11pm, so I should be able to book at 9:30, but I can't.

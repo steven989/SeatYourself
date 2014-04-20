@@ -8,9 +8,9 @@
   <% if flash[:alert] %>
     <div class="alert_login"><%= flash[:alert] %></div>
   <% end %>
-    <% if flash[:notice] %>
-      <div class="notice_login"><%= flash[:notice] %></div>
-    <% end %>
+  <% if flash[:notice] %>
+    <div class="notice_login"><%= flash[:notice] %></div>
+  <% end %>
 
   <%= form_for @user do |f| %>
 

@@ -12,6 +12,8 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
 
         if @user.save
+            # log in!
+            session[:user_id] = @user.id
 
             redirect_to restaurants_path, flash: {registration_success: "Registration successful. Welcome to SeatYourself #{@user.first_name.capitalize}!"}
 
