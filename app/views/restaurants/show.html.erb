@@ -71,8 +71,22 @@
         </div>
       </div>
       
+      <% if authenticated? %>
       <div class="reviews_add">
         <h2>WRITE A REVIEW</h2>
+        <% if @restaurant.errors.any? %>
+          <div class="reviews_error_wrapper">
+            <h3>Found <%= pluralize(@restaurant.errors.count, "Error") %>.</h3>
+            <ul>
+            <% @restaurant.errors.full_messages.each do |error| %>
+              <li><%= error %></li>        
+    
+            <% end %>
+            </ul>
+
+          </div>
+
+        <% end %>
         <div class="reviews_add_form_holder">
           <%= form_for [@restaurant, @restaurant.reviews.new] do |f| %>
               <div class="form_holder_left">
@@ -104,6 +118,7 @@
           <% end %>   
         </div>   
       </div>
+      <% end %>
 
       
 
