@@ -594,6 +594,7 @@
             }
             .form_holder_left textarea {
                 width: 90%;
+                height: 150px;
                 padding: 10px;
                 font-size: 1.25em;            }
         .form_holder_right {
@@ -710,13 +711,28 @@
     border: 1px solid #f3a9a3;
     text-align: center;
 }
-    .registration_form_inner input {
+    .registration_form_inner input[type=text], .registration_form_inner input[type=password], .registration_form_inner input[type=submit] {
         width: 90%;
         padding: 5px;
     }
     .registration_form_inner h2 {
         margin: 0px 0px 25px 0px;
         font-size: 24px;
+    }
+.registration_error_wrapper {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #FF9999;
+    background: #FFE0E0;
+    border-radius: 5px;
+    margin: 0px 20px 20px 20px;
+}
+    .registration_error_wrapper h3 {
+        color: #F00;
+    }
+    .registration_error_wrapper li {
+        margin: 5px;
+        font-size: 0.8em;
     }
 
 .dashboard_wrapper {

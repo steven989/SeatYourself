@@ -71,13 +71,14 @@
         </div>
       </div>
       
+      <% if authenticated? %>
       <div class="reviews_add">
         <h2>WRITE A REVIEW</h2>
         <div class="reviews_add_form_holder">
           <%= form_for [@restaurant, @restaurant.reviews.new] do |f| %>
               <div class="form_holder_left">
-              <p><%= f.text_field 'title', placeholder: "Enter a Headline" %></p>
-              <p><%= f.text_area 'content', placeholder: "Write your review here" %></p>
+              <p><%= f.text_field :title, placeholder: "Enter a Headline" %></p>
+              <p><%= f.text_area :content, placeholder: "Write your review here" %></p>
 
               </div>
               <div class="form_holder_right">
@@ -104,6 +105,7 @@
           <% end %>   
         </div>   
       </div>
+      <% end %>
 
       
 
