@@ -56,6 +56,19 @@ class RestaurantsController < ApplicationController
 
   end 
 
+  def edit
+    
+
+  end
+
+  def modify
+
+  end
+
+  def destroy
+
+  end 
+
 
   private
 

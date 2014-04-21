@@ -13,9 +13,9 @@
       <% if @user == 'login' %>
       <li><%= link_to "Manage Reservations", new_session_path %></li>
       <% elsif User.find_by(id:@user).user_type == "diner" %>
-      <li><%= link_to "Manage Reservations", reservations_path %></li>
+      <li><%= link_to "Manage Reservations", user_path(@user) %></li>
       <% else %>
-      <li><%= link_to "Manage Restaurants", reservations_path %></li>
+      <li><%= link_to "Manage Restaurants", user_path(@user) %></li>
       <% end %>
     </ul>
 
