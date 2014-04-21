@@ -68,13 +68,19 @@ class ReservationsController < ApplicationController
 
     @reservation = Reservation.find_by(id:params[:id])
     @reservation.attributes=(reservation_params)
-
-    if check_opening && check_availability && @reservation.save
-      
-      redirect_to user_path(@reservation.user),  notice: "Resevation saved!"
+    
+    if in_the_past?
+      # We're trying to make a booking in the past
+      flash[:alert] = "You cannot book a reservation in the past!"
+      redirect_to restaurant_path(@reservation.restaurant.id)
+    elsif !check_availability
+      flash[:alert] = "Oh no! No more seats left."
+      redirect_to restaurant_path(@reservation.restaurant.id)
+    elsif @reservation.save
+      redirect_to reservations_path,  notice: "Resevation saved!"
     else
-      flash[:alert] = check_opening ? "Oh no! No more seats left." : "The restaurant is not open at this time."
-      redirect_to user_path(@reservation.user)
+      flash[:alert] = "An unknown error has occured. Please try again later."
+      redirect_to restaurant_path(@reservation.restaurant.id)
     end
 
 

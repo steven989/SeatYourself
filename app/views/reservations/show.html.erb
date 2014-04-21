@@ -25,7 +25,7 @@
       </div>
       <div class="reservation_modify">
         <ul>
-          <li><a href="javascript:void(0)" class="modify">Edit Reservation</a></li><li><%= link_to "Delete Reservation", restaurant_reservation_path(reservation.restaurant, reservation), method: :delete, class: "delete" %></li>
+          <li><%= link_to "Edit Reservation", edit_restaurant_reservation_path(reservation.restaurant, reservation), class: 'modify' %></li><li><%= link_to "Delete Reservation", restaurant_reservation_path(reservation.restaurant, reservation), method: :delete, class: "delete" %></li>
         </ul>
       </div>
       <div class="edit_reservation">

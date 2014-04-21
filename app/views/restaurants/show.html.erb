@@ -72,25 +72,31 @@
       </div>
       
       <div class="reviews_add">
-        <h2>WRITE A<br>REVIEW</h2>
+        <h2>WRITE A REVIEW</h2>
         <div class="reviews_add_form_holder">
           <%= form_for [@restaurant, @restaurant.reviews.new] do |f| %>
               <div class="form_holder_left">
               <p><%= f.text_field 'title', placeholder: "Enter a Headline" %></p>
-              <p><%= f.label 'rating_1', '1' %>
-                  <%= f.radio_button 'rating', 1 %>
-                  <%= f.label 'rating_2', '2' %>
-                  <%= f.radio_button 'rating', 2 %>
-                  <%= f.label 'rating_3', '3' %>
-                  <%= f.radio_button 'rating', 3 %>
-                  <%= f.label 'rating_4', '4' %>
-                  <%= f.radio_button 'rating', 4 %>
-                  <%= f.label 'rating_5', '5' %>
-                  <%= f.radio_button 'rating', 5 %></p>
+              <p><%= f.text_area 'content', placeholder: "Write your review here" %></p>
+
               </div>
               <div class="form_holder_right">
-              <p><%= f.text_area 'content', placeholder: "Write your review here" %></p>
-              <%= f.hidden_field 'user_id', value:session[:user_id] %>
+                <div class="rating_holder">
+                  <h4>RATE THIS RESTAURANT:</h4>
+                  <p><%= f.label 'rating_1', '1' %>
+                      <%= f.radio_button 'rating', 1 %>
+                      <%= f.label 'rating_2', '2' %>
+                      <%= f.radio_button 'rating', 2 %>
+                      <%= f.label 'rating_3', '3' %>
+                      <%= f.radio_button 'rating', 3 %>
+                      <%= f.label 'rating_4', '4' %>
+                      <%= f.radio_button 'rating', 4 %>
+                      <%= f.label 'rating_5', '5' %>
+                      <%= f.radio_button 'rating', 5 %>
+                  </p>
+                </div>
+              
+                <%= f.hidden_field 'user_id', value:session[:user_id] %>
                 <p><%= f.submit 'Submit your review now' %></p>
               </div>
 
