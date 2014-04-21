@@ -10,7 +10,11 @@
     <ul>
       <li><%= link_to "Find a Restaurant", restaurants_path %></li>
       <% @user = session[:user_id].nil? ? "login" : session[:user_id] %>
+      <% if current_user.user_type == 'diner' %>
       <li><%= link_to "Manage Reservations", reservations_path %></li>
+      <% else %>
+      <li><%= link_to "Manage Restaurant", reservations_path %></li>
+      <% end %>
     </ul>
 
   </div>
