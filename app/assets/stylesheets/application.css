@@ -440,6 +440,7 @@
     box-shadow: 1px 1px 6px rgba(0,0,0,0.2);
 
 }
+
 .reservation_form_submit input {
     width: 100%;
     height: 35px;
@@ -908,6 +909,34 @@
 
 }
 
+.add_rest_link {
+
+    color: black;
+    display: block;
+    position: relative; 
+    top: 100px;
+    width: 420px;
+    margin: 0px auto 0px auto;
+    z-index: 10;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    z-index: 10; 
+}
+
+
+.add_restaurant {
+
+    background: #f3a9a3;
+    border-radius: 10px 10px 10px 10px;
+    border: 3px solid white;
+    line-height: 1.5em;
+    margin: 0px 0px 5px 0px;
+    font-size: 28px;
+}
+
+
+
 .individual_restaurant {
 
     position: relative;
@@ -1007,4 +1036,63 @@
 
 
 
+/* ---------------------- restaurants#edit ----------------- */
 
+.update_restaurant_container {
+    position: absolute;
+    left: 50%;
+    margin-left: -12.5%;
+    top: 5%;
+    width: 25%;
+    border-radius: 15px;
+    background: #333;
+    box-shadow:
+      1px 1px 0px rgba(0,0,0,0.5),
+      2px 2px 0px rgba(0,0,0,0.5),
+      1px 1px 8px rgba(0,0,0,0.5)
+    ;
+}
+.restaurant_container {
+    position: absolute;
+    right: 10%;
+    bottom: 5%;
+    width: 25%;
+    border-radius: 15px;
+    background: #333;
+    box-shadow:
+      1px 1px 0px rgba(0,0,0,0.5),
+      2px 2px 0px rgba(0,0,0,0.5),
+      1px 1px 8px rgba(0,0,0,0.5)
+    ;
+}
+    .restaurant_container h3, .update_restaurant_container h3 {
+        position: relative;
+        z-index: 5;
+        padding: 11px 0px;
+        margin: 0px;
+        background: #333;
+        color: #FFF;
+        border-radius: 15px 15px 0px 0px;
+        text-align: center;
+    }
+
+.update_restaurant_details form p {
+
+    color: white;
+    margin-left: 5%;
+
+}
+
+.update_restaurant_details form input {
+
+    width: 90%;
+
+}
+
+
+.update_restaurant_details form textarea {
+
+    width: 90%;
+    height: 100px;
+
+}
