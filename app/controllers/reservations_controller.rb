@@ -132,7 +132,7 @@ class ReservationsController < ApplicationController
   end
 
   def in_the_past?
-    params[:reservation][:start_time] < Time.now
+    params[:reservation][:start_time] < (Time.now + 4)
   end
 
   # Scenario: Booked solid at 11pm, so I should be able to book at 9:30, but I can't.
