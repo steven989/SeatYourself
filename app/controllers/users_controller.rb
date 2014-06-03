@@ -27,9 +27,10 @@ class UsersController < ApplicationController
 
     def show
 
-        @user = User.first
-        @reservations = @user.reservations
+        @upcoming = current_user.reservations.where("start_time > ?", DateTime.now)
+        @past = current_user.reservations.where("start_time < ?", DateTime.now)
 
+        @restaurants_owned = current_user.restaurants_owned
 
     end 
 

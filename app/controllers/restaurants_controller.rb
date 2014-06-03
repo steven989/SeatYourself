@@ -1,6 +1,30 @@
 class RestaurantsController < ApplicationController
 
 
+  def new
+
+    @restaurant = Restaurant.new
+
+  end 
+
+
+  def create
+
+    params[:restaurant][:user_id] = current_user.id
+
+    @restaurant = Restaurant.new(restaurant_params)
+
+    if @restaurant.save
+      
+      redirect_to restaurant_path(@restaurant), flash: {rest_create: "Restaurant successfully saved!" }
+
+    else 
+      render :new
+    end 
+
+  end 
+
+
   def index
 
     if cuisine = params[:cuisine]
@@ -42,17 +66,25 @@ class RestaurantsController < ApplicationController
   end 
 
 
-  def create
+  def edit
+    
+    @restaurant = Restaurant.find_by(id:params[:id])
 
-    @restaurant = Restaurant.new(restaurant_params)
+  end
 
-    if @restaurant.save
-      
-      redirect_to restaurant_path(@restaurant), flash: {rest_create: "Restaurant successfully saved!" }
+  def update
 
-    else 
-      render :new
-    end 
+    Restaurant.find_by(id:params[:id]).update_attributes(restaurant_params)
+
+    redirect_to user_path(current_user)
+
+  end
+
+  def destroy
+
+    Restaurant.find_by(id:params[:id]).destroy
+
+    redirect_to user_path(current_user)
 
   end 
 
@@ -61,7 +93,7 @@ class RestaurantsController < ApplicationController
 
   def restaurant_params
 
-    params.require(:restaurant).permit(:name,:description,:cuisine,:capacity,:location,:address,:display_image_url)
+    params.require(:restaurant).permit(:name,:description,:cuisine,:capacity,:location,:address,:display_image_url,:opening_hour,:closing_hour,:reservation_length_minutes,:user_id)
 
   end 
 
